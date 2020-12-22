@@ -1,12 +1,21 @@
 import './App.css';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
-const App =()=>{
-    return (
+const MyButton = styled.button`
+  border: 2px solid blue;
+  padding: 50px;
+`;
+
+class App extends Component {
+  state = {  }
+  render() { 
+    return ( 
       <>
-        Aplikacja react
+        <MyButton>This is my button</MyButton>
       </>
-    );
+     );
+  }
 }
-
+ 
 export default App;
