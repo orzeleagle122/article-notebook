@@ -12,7 +12,7 @@ const GlobalStyle=createGlobalStyle`
     }
 
     html {
-        font-size: 62.5% // 1rem === 16px, ustalenie wielkosci jednostki rem na 10px
+        font-size: 62.5%; // 1rem === 16px, ustalenie wielkosci jednostki rem na 10px
     }
 
     body {
