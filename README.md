@@ -1,6 +1,7 @@
 # Article-notebook
 
-### npx storybook@5 init
+npx sb init
+npm install --dev @storybook/addon-knobs
 
 # Getting Started with Create React App
 
