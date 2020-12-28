@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import Button from '../../components/Button/Button';
+import { ThemeProvider } from 'styled-components';
+import Button from '../../components/atoms/Button/Button';
 import GlobalStyle from '../../theme/GlobalStyle';
+import {theme} from '../../theme/mainTheme';
+
 
 class Root extends Component {
   state = {  }
@@ -8,11 +11,15 @@ class Root extends Component {
     return ( 
       <div>
         <GlobalStyle/>
-        <h1>
-          Hellow Word
-        </h1>
-        <Button>Close/Save</Button>
-        <Button secondary={true}>Close/Save</Button>
+        <ThemeProvider theme={theme}>
+          <>
+            <h1>
+              Hellow Word
+            </h1>
+            <Button>Close/Save</Button>
+            <Button secondary={true}>Close/Save</Button>
+          </>
+        </ThemeProvider>
       </div>
      );
   }
