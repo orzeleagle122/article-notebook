@@ -3,7 +3,7 @@
 import React from 'react';
 import Button from './Button';
 import {storiesOf} from '@storybook/react';
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs';
 
 
 storiesOf("Button", module)
