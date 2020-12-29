@@ -1,17 +1,11 @@
-import React, { Component } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React from 'react';
+import MainTemplate from '../../templates/MainTemplete';
 import Button from '../../components/atoms/Button/Button';
-import GlobalStyle from '../../theme/GlobalStyle';
-import {theme} from '../../theme/mainTheme';
 
 
-class Root extends Component {
-  state = {  }
-  render() { 
-    return ( 
-      <div>
-        <GlobalStyle/>
-        <ThemeProvider theme={theme}>
+const Root = () => {
+  return ( 
+    <MainTemplate>
           <>
             <h1>
               Hellow Word
@@ -19,10 +13,8 @@ class Root extends Component {
             <Button>Close/Save</Button>
             <Button secondary={true}>Close/Save</Button>
           </>
-        </ThemeProvider>
-      </div>
-     );
-  }
+    </MainTemplate>
+   );
 }
  
 export default Root;
