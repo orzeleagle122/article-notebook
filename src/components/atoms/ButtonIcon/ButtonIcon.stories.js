@@ -18,7 +18,7 @@ const YellowBackground=styled.div`
     background: ${({theme})=>theme.notes};
 `;
 
-storiesOf('ButtonIcon', module)
+storiesOf('Atoms/ButtonIcon', module)
 .addDecorator(story=><YellowBackground>{story()}</YellowBackground>)
 .add('Bulb', () => <ButtonIcon icon={bulbIcon}/>)
 .add('Bulb active', () => <ButtonIcon active icon={bulbIcon}/>)
