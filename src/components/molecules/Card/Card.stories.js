@@ -3,5 +3,7 @@ import {storiesOf} from '@storybook/react';
 import Card from './Card';
 
 storiesOf('Card', module)
-    .add('Normal',()=><Card/>);
+    .add('Notes',()=><Card cardType="notes"/>)
+    .add('Twitter',()=><Card cardType="twitters"/>)
+    .add('Article',()=><Card cardType="articles"/>);
 
