@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 const ButtonIcon = styled.button`
+    display: block;
     width: 67px;
     height: 67px;
     border-radius: 20px;
@@ -10,7 +11,11 @@ const ButtonIcon = styled.button`
     background-position: 50% 50%;
     background-size: 40px;
     border: none;
-    background-color: ${({active})=>active?'white':'transparent'};
+    margin: 15px 0;
+    
+    &.active {
+        background-color: white;
+    }
 `;
 
 export default ButtonIcon
