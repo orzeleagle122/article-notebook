@@ -92,7 +92,7 @@ const Card = ({cardType, title, created, twitterName,articleUrl, content}) => {
 };
 
 Card.propTypes={
-    cardType: PropTypes.oneOf(['notes','twitter','article']),
+    cardType: PropTypes.oneOf(['notes','twitters','article']),
     title: PropTypes.string.isRequired,
     created: PropTypes.string.isRequired,
     twitterName: PropTypes.string,

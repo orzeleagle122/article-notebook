@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GridViewTemplate from '../templates/UserPageTamplate';
+import GridViewTemplate from '../templates/GridViewTemplate';
 import Card from '../components/molecules/Card/Card';
 
 const notes = [

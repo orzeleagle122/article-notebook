@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GridViewTemplate from '../templates/UserPageTamplate';
+import GridViewTemplate from '../templates/GridViewTemplate';
 import Card from '../components/molecules/Card/Card';
 
 const articles = [
@@ -9,7 +9,7 @@ const articles = [
       title: 'React on my mind',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
+      articleUrl: 'https://youtube.com/',
       created: '1 day',
     },
     {
@@ -17,7 +17,7 @@ const articles = [
       title: 'Wish you React',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
+      articleUrl: 'https://youtube.com/',
       created: '1 day',
     },
     {
@@ -25,7 +25,7 @@ const articles = [
       title: 'You gave React a bad name',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
+      articleUrl: 'https://youtube.com/',
       created: '5 days',
     },
     {
@@ -33,7 +33,7 @@ const articles = [
       title: 'Is it React you looking for?',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
+      articleUrl: 'https://youtube.com/',
       created: '10 days',
     },
   ];
