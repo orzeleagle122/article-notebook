@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserPageTemplate from '../templates/UserPageTamplate';
+import GridViewTemplate from '../templates/UserPageTamplate';
 import Card from '../components/molecules/Card/Card';
 
 const articles = [
@@ -39,9 +39,9 @@ const articles = [
   ];
 
 const Articles = () => (
-         <UserPageTemplate pageType="articles">
+         <GridViewTemplate pageType="articles">
              {articles.map((item)=><Card cardType="articles" key={item.id} title={item.title} content={item.content} articleUrl={item.articleUrl} created={item.created}/>)}
-         </UserPageTemplate>        
+         </GridViewTemplate>        
      );
 
 Articles.propTypes={

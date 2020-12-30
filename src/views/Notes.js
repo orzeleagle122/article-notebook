@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserPageTemplate from '../templates/UserPageTamplate';
+import GridViewTemplate from '../templates/UserPageTamplate';
 import Card from '../components/molecules/Card/Card';
 
 const notes = [
@@ -36,9 +36,9 @@ const notes = [
 
 const Notes = () => {
     return (
-         <UserPageTemplate pageType="notes">
+         <GridViewTemplate pageType="notes">
              {notes.map((item)=><Card cardType="notes" key={item.id} title={item.title} content={item.content} created={item.created}/>)}
-         </UserPageTemplate>
+         </GridViewTemplate>
         
      );
 }

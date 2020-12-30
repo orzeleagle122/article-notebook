@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserPageTemplate from '../templates/UserPageTamplate';
+import GridViewTemplate from '../templates/UserPageTamplate';
 import Card from '../components/molecules/Card/Card';
 
 const twitters = [
@@ -40,9 +40,9 @@ const twitters = [
 
 const Twitters = () => {
     return (
-         <UserPageTemplate pageType="twitters">             
+         <GridViewTemplate pageType="twitters">             
             {twitters.map((item)=><Card cardType="twitters" key={item.id} title={item.title} content={item.content} twitterName={item.twitterName} created={item.created}/>)}
-         </UserPageTemplate>
+         </GridViewTemplate>
         
      );
 }
