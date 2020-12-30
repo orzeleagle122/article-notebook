@@ -9,8 +9,11 @@ const MainTemplate = ({children}) => {
     return ( 
         <div>
             <GlobalStyle/>
+            
             <ThemeProvider theme={theme}>
+                <>
                 {children}
+                </>
             </ThemeProvider>
       </div>
      );

@@ -6,6 +6,7 @@ import bulbIcon from '../../../assets/icons/bulb.svg';
 import logoutIcon from '../../../assets/icons/logout.svg';
 import penIcon from '../../../assets/icons/pen.svg';
 import twitterIcon from '../../../assets/icons/twitter.svg';
+import logo from '../../../assets/icons/logo.png';
 
 const StyledWrapper = styled.nav`
   position: fixed;
@@ -14,7 +15,7 @@ const StyledWrapper = styled.nav`
   padding: 25px 0;
   width: 150px;
   height: 100vh;
-  background-color: ${({ theme }) => theme.notes};
+  background-color: ${({pageType,theme})=>(pageType?theme[pageType]:theme.notes)};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,7 +26,7 @@ const StyledLogoLink = styled(NavLink)`
   display: block;
   width: 67px;
   height: 67px;
-  background-image: url("");
+  background-image: url(${logo});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 80%;
@@ -43,8 +44,8 @@ const StyledLinksList = styled.ul`
   list-style: none;
 `;
 
-const SideBar = () => (
-  <StyledWrapper>
+const SideBar = ({pageType}) => (
+  <StyledWrapper pageType={pageType}>
     <StyledLogoLink to="/" />
     <StyledLinksList>
       <li>

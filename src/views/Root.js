@@ -7,15 +7,17 @@ import Twitters from './Twitters';
 
 const Root = () => {
   return ( 
-    <MainTemplate>
-      <Router>
+    <Router>
+      <MainTemplate>
+      
         <Switch>
           <Route exact path="/" component={Notes}/>
           <Route path="/articles" component={Articles}/>
           <Route path="/twitters" component={Twitters}/>
         </Switch>
-      </Router>
-    </MainTemplate>
+      
+      </MainTemplate>
+    </Router>
    );
 }
  

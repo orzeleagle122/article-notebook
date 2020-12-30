@@ -67,22 +67,22 @@ const StyledLink=styled.a`
 `;
 
 
-const Card = ({cardType}) => {
+const Card = ({cardType, title, created, twitterName,articleUrl, content}) => {
     return ( 
         <StyleWrapper>
             <InnerWrapper activeColor={cardType}>
                 <StyleHeading>
-                    Hello Patryk
+                    {title}
                 </StyleHeading>
                 <DateInfo>
-                    3 days
+                    {created}
                 </DateInfo>
-                {cardType==='twitters'&&<StyledAvatar src="https://unavatar.now.sh/twitter/orzeleagle"/>}
-                {cardType==='articles'&&<StyledLink/>}
+                {cardType==='twitters'&&<StyledAvatar src={`https://unavatar.now.sh/twitter/${twitterName}`}/>}
+                {cardType==='articles'&&<StyledLink href={articleUrl}/>}
             </InnerWrapper>
             <InnerWrapper flex>
                 <Paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id pellentesque turpis. Fusce tristique id diam quis varius. Nulla malesuada dolor in lorem efficitur, et tincidunt justo semper. Phasellus mattis commodo elit, nec tincidunt nibh pretium ut. Nullam pharetra vel nunc id volutpat. Ut in enim id ex tincidunt auctor. Aliquam erat volutpat. Quisque id massa ut urna facilisis pellentesque. Nullam at mauris in diam sodales semper.
+                    {content}
                 </Paragraph>
             
                 <Button secondary>REMOVE</Button>
@@ -92,11 +92,18 @@ const Card = ({cardType}) => {
 };
 
 Card.propTypes={
-    cardType: PropTypes.oneOf(['notes','twitter','article'])
+    cardType: PropTypes.oneOf(['notes','twitter','article']),
+    title: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+    twitterName: PropTypes.string,
+    articleUrl: PropTypes.string,
+    content: PropTypes.string.isRequired
 };
 
 Card.defaultProps={
-    cardType: 'notes'
+    cardType: 'notes',
+    twitterName: null,
+    articleUrl: null
 };
  
 export default Card;
