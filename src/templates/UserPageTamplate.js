@@ -1,10 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SideBar from '../components/organisms/SideBar/SideBar';
-import Input from '../components/atoms/Input/Input';
-import Heading from '../components/atoms/Heading/Heading';
-import Paragraph from '../components/atoms/Paragraph/Paragraph';
 
 const UserPageTemplate = ({children, pageType}) => {
     return ( 
@@ -16,7 +12,8 @@ const UserPageTemplate = ({children, pageType}) => {
 }
 
 UserPageTemplate.propTypes={
-    children: PropTypes.element.isRequired
+    pageTypes: PropTypes.oneOf(['notes','articles','twitters']),
+    children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
 };
  
 export default UserPageTemplate;

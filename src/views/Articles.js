@@ -40,7 +40,7 @@ const articles = [
 
 const Articles = () => (
          <GridViewTemplate pageType="articles">
-             {articles.map((item)=><Card cardType="articles" key={item.id} title={item.title} content={item.content} articleUrl={item.articleUrl} created={item.created}/>)}
+             {articles.map((item)=><Card cardType="articles" key={item.id} title={item.title} content={item.content} articleUrl={item.articleUrl} created={item.created} id={item.id}/>)}
          </GridViewTemplate>        
      );
 

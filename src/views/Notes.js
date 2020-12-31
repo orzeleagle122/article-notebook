@@ -37,7 +37,7 @@ const notes = [
 const Notes = () => {
     return (
          <GridViewTemplate pageType="notes">
-             {notes.map((item)=><Card cardType="notes" key={item.id} title={item.title} content={item.content} created={item.created}/>)}
+             {notes.map((item)=><Card cardType="notes" key={item.id} title={item.title} content={item.content} created={item.created} id={item.id}/>)}
          </GridViewTemplate>
         
      );

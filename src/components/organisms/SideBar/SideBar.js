@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import ButtonIcon from '../../atoms/ButtonIcon/ButtonIcon';
@@ -49,7 +50,7 @@ const SideBar = ({pageType}) => (
     <StyledLogoLink to="/" />
     <StyledLinksList>
       <li>
-        <ButtonIcon exact as={NavLink} to="/notes" icon={penIcon} activeclass="active" />
+        <ButtonIcon as={NavLink} to="/notes" icon={penIcon} activeclass="active" />
       </li>
       <li>
         <ButtonIcon as={NavLink} to="/twitters" icon={twitterIcon} activeclass="active" />
@@ -61,5 +62,9 @@ const SideBar = ({pageType}) => (
     <StyledLogoutButton as={NavLink} to="/login" icon={logoutIcon} />
   </StyledWrapper>
 );
+
+SideBar.propTypes={
+  pageType: PropTypes.oneOf(['notes','twitters','articles'])
+};
  
 export default SideBar;

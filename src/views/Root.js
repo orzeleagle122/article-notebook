@@ -5,6 +5,7 @@ import Notes from './Notes';
 import Articles from './Articles';
 import Twitters from './Twitters';
 import DetailsPage from './DetailsPage';
+import {routers} from '../router/index';
 
 const Root = () => {
   return ( 
@@ -12,13 +13,13 @@ const Root = () => {
       <MainTemplate>
       
         <Switch>
-          <Route exact path="/" render={()=><Redirect to="/notes" />} />
-          <Route exact path="/notes" component={Notes}/>
-          <Route path="/notes/:id" component={DetailsPage}/>
-          <Route exact path="/articles" component={Articles}/>
-          <Route path="/articles/:id" component={DetailsPage}/>
-          <Route exact path="/twitters" component={Twitters}/>
-          <Route path="/twitters/:id" component={DetailsPage}/>
+          <Route exact path={routers.home} render={()=><Redirect to="/notes" />} />
+          <Route exact path={routers.notes} component={Notes}/>
+          <Route path={routers.note} component={DetailsPage}/>
+          <Route exact path={routers.articles} component={Articles}/>
+          <Route path={routers.article} component={DetailsPage}/>
+          <Route exact path={routers.twitters} component={Twitters}/>
+          <Route path={routers.twitter} component={DetailsPage}/>
         </Switch>
       
       </MainTemplate>

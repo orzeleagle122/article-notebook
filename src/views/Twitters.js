@@ -41,7 +41,7 @@ const twitters = [
 const Twitters = () => {
     return (
          <GridViewTemplate pageType="twitters">             
-            {twitters.map((item)=><Card cardType="twitters" key={item.id} title={item.title} content={item.content} twitterName={item.twitterName} created={item.created}/>)}
+            {twitters.map((item)=><Card cardType="twitters" key={item.id} title={item.title} content={item.content} twitterName={item.twitterName} created={item.created} id={item.id}/>)}
          </GridViewTemplate>
         
      );
