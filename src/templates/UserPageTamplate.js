@@ -12,7 +12,7 @@ const UserPageTemplate = ({children, pageType}) => {
 }
 
 UserPageTemplate.propTypes={
-    pageTypes: PropTypes.oneOf(['notes','articles','twitters']),
+    pageType: PropTypes.oneOf(['notes','articles','twitters']),
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
 };
  

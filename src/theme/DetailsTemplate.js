@@ -41,6 +41,8 @@ const StyledLink = styled.a`
   color: black;
   text-transform: uppercase;
   margin: 20px 0 50px;
+  background-color: ${({ theme }) => theme.pageType};
+  text-decoration: none;
 `;
 
 const StyledImage = styled.img`
@@ -52,8 +54,8 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitterName, cardType }) => (
-  <UserPageTemplate pageType={pageType}>
+const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitterName }) => (
+    <UserPageTemplate pageType={pageType}>
     <StyledWrapper>
       <StyledPageHeader>
         <StyledHeading big as="h1">
@@ -64,30 +66,30 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
       <Paragraph>{content}</Paragraph>
       {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
       {pageType === 'twitters' && (
-        <StyledImage alt={title} src={`https://avatars.io/twitter/${twitterName}`} />
+        <StyledImage alt={title} src={`https://unavatar.now.sh/twitter/${twitterName}`} />
       )}
-      <Button as={Link} to={`/${pageType}`} activeColor={cardType}>
-        save / close
+      <Button as={Link} to={`/${pageType}`} activeColor={pageType}>
+        close
       </Button>
     </StyledWrapper>
   </UserPageTemplate>
 );
 
 DetailsTemplate.propTypes = {
-  pageType: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  created: PropTypes.string,
-  content: PropTypes.string,
-  articleUrl: PropTypes.string,
-  twitterName: PropTypes.string,
-};
-
-DetailsTemplate.defaultProps = {
-  title: '',
-  created: '',
-  content: '',
-  articleUrl: '',
-  twitterName: '',
-};
+    pageType: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    created: PropTypes.string,
+    content: PropTypes.string,
+    articleUrl: PropTypes.string,
+    twitterName: PropTypes.string,
+  };
+  
+  DetailsTemplate.defaultProps = {
+    title: '',
+    created: '',
+    content: '',
+    articleUrl: '',
+    twitterName: '',
+  };
 
 export default DetailsTemplate;
