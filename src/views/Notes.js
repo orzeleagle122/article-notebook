@@ -2,39 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GridViewTemplate from '../templates/GridViewTemplate';
 import Card from '../components/molecules/Card/Card';
+import { connect } from 'react-redux';
 
-const notes = [
-    {
-      id: 1,
-      title: 'Wake me up when Vue ends',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 2,
-      title: 'Como es An Gular?',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 3,
-      title: 'Du bist Reactish',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '5 days',
-    },
-    {
-      id: 4,
-      title: 'Reactuj się kto moze!',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '10 days',
-    },
-  ];
 
-const Notes = () => {
+const Notes = ({notes}) => {
     return (
          <GridViewTemplate pageType="notes">
              {notes.map((item)=><Card cardType="notes" key={item.id} title={item.title} content={item.content} created={item.created} id={item.id}/>)}
@@ -43,6 +14,8 @@ const Notes = () => {
      );
 }
 
+const mapStateToProps=({notes})=>({notes});
+
 Notes.propTypes={
     pageType: PropTypes.oneOf(['notes','twitters','articles'])
 };
@@ -50,5 +23,5 @@ Notes.propTypes={
 Notes.defaultProps={
     pageType: 'notes'
 };
-export default Notes;
+export default connect(mapStateToProps)(Notes);
 
