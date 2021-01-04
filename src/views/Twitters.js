@@ -17,7 +17,16 @@ const Twitters = ({twitters}) => {
 const mapStateToProps=({twitters})=>({twitters});
 
 Twitters.propTypes={
-    pageType: PropTypes.oneOf(['notes','twitters','articles'])
+    twitters: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            cardType: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            connect: PropTypes.string.isRequired,
+            twitterName: PropTypes.string.isRequired,
+            created: PropTypes.string.isRequired
+        })
+    )
 };
 
 Twitters.defaultProps={
