@@ -5,7 +5,9 @@ import styled, {css} from 'styled-components';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Heading from '../../atoms/Heading/Heading';
 import Button from '../../atoms/Button/Button';
-import linkIcon from '../../../assets/icons/link.svg'
+import linkIcon from '../../../assets/icons/link.svg';
+import {removeItem} from '../../../actions/index';
+import {connect} from 'react-redux';
 
 const StyleWrapper=styled.div`  
     min-height: 380px;
@@ -78,7 +80,7 @@ class Card extends Component {
     }
 
     render(){
-        const {cardType, title, created, twitterName,articleUrl, content, id} = this.props;
+        const {cardType, title, created, twitterName,articleUrl, content, id, removeItem} = this.props;
         if(this.state.redirect){
            return <Redirect to={`${cardType}/${id}`} />
         }
@@ -99,7 +101,7 @@ class Card extends Component {
                         {content}
                     </Paragraph>
                 
-                    <Button secondary>REMOVE</Button>
+                    <Button onClick={()=>removeItem(cardType,id)} secondary>REMOVE</Button>
                 </InnerWrapper>
             </StyleWrapper>
         );
@@ -120,5 +122,13 @@ Card.defaultProps={
     twitterName: null,
     articleUrl: null
 };
+
+const mapDispatchToProps=(dispatch)=>{
+    return (
+        {
+            removeItem:(itemType,id)=>dispatch(removeItem(itemType,id))
+        }
+    )
+}
  
-export default Card;
+export default connect(null,mapDispatchToProps)(Card);

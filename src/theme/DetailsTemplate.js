@@ -6,6 +6,7 @@ import UserPageTemplate from '../templates/UserPageTamplate';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
 import Button from '../components/atoms/Button/Button';
+import withContext from '../hoc/withContext';
 
 const StyledWrapper = styled.div`
   padding: 25px 150px 25px 70px;
@@ -54,8 +55,8 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitterName }) => (
-    <UserPageTemplate pageType={pageType}>
+const DetailsTemplate = ({ pageContext, pageType, title, created, content, articleUrl, twitterName }) => (
+    <UserPageTemplate>
     <StyledWrapper>
       <StyledPageHeader>
         <StyledHeading big as="h1">
@@ -76,7 +77,7 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
 );
 
 DetailsTemplate.propTypes = {
-    pageType: PropTypes.string.isRequired,
+  pageContext: PropTypes.string.isRequired,
     title: PropTypes.string,
     created: PropTypes.string,
     content: PropTypes.string,
@@ -92,4 +93,4 @@ DetailsTemplate.propTypes = {
     twitterName: '',
   };
 
-export default DetailsTemplate;
+export default withContext(DetailsTemplate);

@@ -5,6 +5,7 @@ import UserPageTemplate from '../templates/UserPageTamplate';
 import Input from '../components/atoms/Input/Input';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
+import withContext from '../hoc/withContext';
 
 const StyledWrapper=styled.div`
     padding: 25px 150px 25px 70px;
@@ -41,15 +42,15 @@ const StyledParagraph=styled(Paragraph)`
     font-weight: ${({theme})=>theme.bold};
 `;
 
-const GridViewTemplate = ({children, pageType}) => {
+const GridViewTemplate = ({children, pageContext}) => {
     return ( 
         <>
-            <UserPageTemplate pageType={pageType}>
+            <UserPageTemplate>
             <StyledWrapper>
                 <StyledPageHeader>
                     <Input search placeholder="Search"/>
-                    <StyledHeading big as="h1">{pageType}</StyledHeading>
-                    <StyledParagraph>12 {pageType}</StyledParagraph>                    
+                    <StyledHeading big as="h1">{pageContext}</StyledHeading>
+                    <StyledParagraph>12 {pageContext}</StyledParagraph>                    
                     </StyledPageHeader>
                     <StyledGrid>
                         {children}
@@ -62,7 +63,7 @@ const GridViewTemplate = ({children, pageType}) => {
 
 GridViewTemplate.propTypes={
     children: PropTypes.arrayOf(PropTypes.object).isRequired,
-    pageType: PropTypes.oneOf(['notes','twitters','articles'])    
+    pageContext: PropTypes.oneOf(['notes','twitters','articles'])    
 };
  
-export default GridViewTemplate;
+export default withContext(GridViewTemplate);

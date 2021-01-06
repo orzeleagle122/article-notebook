@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideBar from '../components/organisms/SideBar/SideBar';
 
-const UserPageTemplate = ({children, pageType}) => {
+const UserPageTemplate = ({children}) => {
     return ( 
         <>
-            <SideBar pageType={pageType}/>
+            <SideBar/>
             {children}
         </>
      );
 }
 
 UserPageTemplate.propTypes={
-    pageType: PropTypes.oneOf(['notes','articles','twitters']),
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
 };
  
