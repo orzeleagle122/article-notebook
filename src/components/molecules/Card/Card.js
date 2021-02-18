@@ -6,8 +6,9 @@ import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Heading from '../../atoms/Heading/Heading';
 import Button from '../../atoms/Button/Button';
 import linkIcon from '../../../assets/icons/link.svg';
-import {removeItem} from '../../../actions/index';
+import {removeItem as removeItemAction} from '../../../actions/index';
 import {connect} from 'react-redux';
+import withContext from '../../../hoc/withContext';
 
 const StyleWrapper=styled.div`  
     min-height: 380px;
@@ -21,7 +22,7 @@ const StyleWrapper=styled.div`
 
 const InnerWrapper=styled.div`
     padding: 17px 30px;
-    background-color: ${({activeColor,theme})=>(activeColor?theme[activeColor]:'white')};
+    background-color: ${({activecolor,theme})=>(activecolor?theme[activecolor]:'white')};
     position: relative;
     :first-of-type{
         z-index: 9999;
@@ -80,28 +81,28 @@ class Card extends Component {
     }
 
     render(){
-        const {cardType, title, created, twitterName,articleUrl, content, id, removeItem} = this.props;
+        const {pageContext, title, created, twitterName,articleUrl, content, id, removeItem} = this.props;
         if(this.state.redirect){
-           return <Redirect to={`${cardType}/${id}`} />
+           return <Redirect to={`${pageContext}/${id}`} />
         }
         return ( 
-            <StyleWrapper onClick={this.handleCardClick}>
-                <InnerWrapper activeColor={cardType}>
+            <StyleWrapper >
+                <InnerWrapper activecolor={pageContext} onClick={this.handleCardClick}>
                     <StyleHeading>
                         {title}
                     </StyleHeading>
                     <DateInfo>
                         {created}
                     </DateInfo>
-                    {cardType==='twitters'&&<StyledAvatar src={`https://unavatar.now.sh/twitter/${twitterName}`}/>}
-                    {cardType==='articles'&&<StyledLink href={articleUrl}/>}
+                    {pageContext==='twitters'&&<StyledAvatar src={`https://unavatar.now.sh/twitter/${twitterName}`}/>}
+                    {pageContext==='articles'&&<StyledLink href={articleUrl}/>}
                 </InnerWrapper>
                 <InnerWrapper flex>
                     <Paragraph>
                         {content}
                     </Paragraph>
                 
-                    <Button onClick={()=>removeItem(cardType,id)} secondary>REMOVE</Button>
+                    <Button onClick={()=>removeItem(pageContext,id)} secondary>REMOVE</Button>
                 </InnerWrapper>
             </StyleWrapper>
         );
@@ -109,26 +110,25 @@ class Card extends Component {
 };
 
 Card.propTypes={
-    cardType: PropTypes.oneOf(['notes','twitters','articles']),
+    pageContext: PropTypes.oneOf(['notes','twitters','articles']),
     title: PropTypes.string.isRequired,
     created: PropTypes.string.isRequired,
     twitterName: PropTypes.string,
     articleUrl: PropTypes.string,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
+    removeItem:PropTypes.func.isRequired,
 };
 
 Card.defaultProps={
-    cardType: 'notes',
+    pageContext: 'notes',
     twitterName: null,
     articleUrl: null
 };
 
-const mapDispatchToProps=(dispatch)=>{
-    return (
+const mapDispatchToProps=(dispatch)=>(
         {
-            removeItem:(itemType,id)=>dispatch(removeItem(itemType,id))
+            removeItem:(pageContext,id)=>dispatch(removeItemAction(pageContext,id))
         }
     )
-}
  
-export default connect(null,mapDispatchToProps)(Card);
+export default connect(null,mapDispatchToProps)(withContext(Card));

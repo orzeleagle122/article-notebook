@@ -67,5 +67,9 @@ const SideBar = ({pageContext}) => (
 SideBar.propTypes={
   pageContext: PropTypes.oneOf(['notes','twitters','articles'])
 };
+
+SideBar.defaultProps={
+  pageContext:'notes',
+}
  
 export default withContext(SideBar);

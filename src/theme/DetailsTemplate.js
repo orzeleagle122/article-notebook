@@ -55,7 +55,7 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageContext, pageType, title, created, content, articleUrl, twitterName }) => (
+const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twitterName }) => (
     <UserPageTemplate>
     <StyledWrapper>
       <StyledPageHeader>
@@ -65,11 +65,11 @@ const DetailsTemplate = ({ pageContext, pageType, title, created, content, artic
         <StyledParagraph>{created}</StyledParagraph>
       </StyledPageHeader>
       <Paragraph>{content}</Paragraph>
-      {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
-      {pageType === 'twitters' && (
+      {pageContext === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
+      {pageContext === 'twitters' && (
         <StyledImage alt={title} src={`https://unavatar.now.sh/twitter/${twitterName}`} />
       )}
-      <Button as={Link} to={`/${pageType}`} activeColor={pageType}>
+      <Button as={Link} to={`/${pageContext}`} activecolor={pageContext}>
         close
       </Button>
     </StyledWrapper>

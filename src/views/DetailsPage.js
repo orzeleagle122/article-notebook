@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import DetailsTemplate from '../theme/DetailsTemplate';
-import {routers} from '../router/index'
+import {routers} from '../router/index';
 
 class DetailsPage extends Component {
     state = { 
@@ -20,7 +20,7 @@ class DetailsPage extends Component {
                 this.setState({pageType:'notes'})
                  break;
              default: 
-                this.setState({pageType:'notes'})
+                console.log('Something went wrong with matching paths');
          }
      }
  
@@ -52,7 +52,7 @@ class DetailsPage extends Component {
 }
 
 DetailsPage.propTypes = {
-    match: PropTypes.isRequired,
+    match: PropTypes.object.isRequired,
   };
  
 export default DetailsPage;

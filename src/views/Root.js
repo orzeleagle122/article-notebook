@@ -13,8 +13,7 @@ const Root = () => {
   return ( 
     <Provider store={store}>
       <Router>
-        <MainTemplate>
-        
+        <MainTemplate>        
           <Switch>
             <Route exact path={routers.home} render={()=><Redirect to="/notes" />} />
             <Route exact path={routers.notes} component={Notes}/>
@@ -23,8 +22,7 @@ const Root = () => {
             <Route path={routers.article} component={DetailsPage}/>
             <Route exact path={routers.twitters} component={Twitters}/>
             <Route path={routers.twitter} component={DetailsPage}/>
-          </Switch>
-        
+          </Switch>        
         </MainTemplate>
       </Router>
     </Provider>
