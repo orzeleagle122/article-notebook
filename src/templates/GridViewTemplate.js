@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import UserPageTemplate from '../templates/UserPageTamplate';
@@ -54,24 +54,33 @@ const StyledButtonIcon=styled(ButtonIcon)`
     background-color: ${({ pageContext,theme })=>( theme[pageContext] )};
     border-radius:50px;
     background-size:25px;
+    z-index:9999;
+    transform: ${({ isVisible })=>( isVisible ? 'rotate(45deg)' : 'rotate(90deg)' )};
+    transition: transform 0.5s ease-in-out;
 `;
 
 const GridViewTemplate = ({children, pageContext}) => {
+    const [itemBar,setItemBar]=useState(false);
+
+    const handleNewItemBarToogle=()=>{
+        setItemBar(prevState=>!prevState);
+    }
+
     return ( 
         <>
             <UserPageTemplate>
-            <StyledWrapper>
-                <StyledPageHeader>
-                    <Input search placeholder="Search"/>
-                    <StyledHeading big as="h1">{pageContext}</StyledHeading>
-                    <StyledParagraph>12 {pageContext}</StyledParagraph>                    
+                <StyledWrapper>
+                    <StyledPageHeader>
+                        <Input search placeholder="Search"/>
+                        <StyledHeading big as="h1">{pageContext}</StyledHeading>
+                        <StyledParagraph>12 {pageContext}</StyledParagraph>                    
                     </StyledPageHeader>
                     <StyledGrid>
                         {children}
                     </StyledGrid>
-                    <StyledButtonIcon icon={plusicon} pageContext={pageContext} />        
+                    <StyledButtonIcon icon={plusicon} pageContext={pageContext} onClick={handleNewItemBarToogle} isVisible={itemBar}/>        
                 </StyledWrapper>
-                <NewItemBar/>
+                <NewItemBar isVisible={itemBar}/>
             </UserPageTemplate>
         </>
      );

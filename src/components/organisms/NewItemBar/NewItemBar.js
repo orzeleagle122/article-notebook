@@ -5,11 +5,13 @@ import Heading from '../../atoms/Heading/Heading';
 import Button from '../../atoms/Button/Button';
 import Input from '../../atoms/Input/Input';
 import withContext from '../../../hoc/withContext';
+import {connect} from 'react-redux';
+import {addItem as addItemAction} from '../../../actions';
 
 
 const StyledWrapper = styled.div`
   border-left: 10px solid ${({ theme, activecolor }) => theme[activecolor]};
-  z-index: 9999;
+  z-index: 9998;
   position: fixed;
   display: flex;
   padding: 100px 90px;
@@ -20,6 +22,8 @@ const StyledWrapper = styled.div`
   width: 680px;
   background-color: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transform: translate(${({ isVisible })=>( isVisible ? '0' : '100%' )});
+  transition: transform 0.5s ease-in-out;
 `;
 
 const StyledTextArea = styled(Input)`
@@ -28,12 +32,19 @@ const StyledTextArea = styled(Input)`
   height: 30vh;
 `;
 
-const NewItemBar = ({ pageContext }) => (
-  <StyledWrapper activecolor={pageContext}>
+const StyledInput=styled(Input)`
+  margin-top:30px;
+`;
+
+
+const NewItemBar = ({ pageContext,isVisible,addItem }) => (
+  <StyledWrapper activecolor={pageContext} isVisible={isVisible}>
     <Heading big>Create new {pageContext}</Heading>
-    <Input placeholder="title" />
+    <StyledInput placeholder="title"/>
+    <StyledInput placeholder={pageContext==='twitters'?'Accont Name eg. orzeleagle122':'title'} />
+    {pageContext==='articles' && <StyledInput placeholder="link" />}
     <StyledTextArea as="textarea" placeholder="title" />
-    <Button activecolor={pageContext}>Add Note</Button>
+    <Button activecolor={pageContext} onClick={()=>addItem(pageContext,{title:'tytul'})}>Add Note</Button>
   </StyledWrapper>
 );
 
@@ -45,4 +56,10 @@ NewItemBar.defaultProps = {
   pageContext: 'notes',
 };
 
-export default withContext(NewItemBar);
+const mapDispatchToProps=(dispatch)=>(
+    {
+      addItem: (itemType,itemContent)=>dispatch(addItemAction(itemType,itemContent))
+    }
+)
+
+export default connect(null,mapDispatchToProps)(withContext(NewItemBar));

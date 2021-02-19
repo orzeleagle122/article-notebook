@@ -25,7 +25,7 @@ const InnerWrapper=styled.div`
     background-color: ${({activecolor,theme})=>(activecolor?theme[activecolor]:'white')};
     position: relative;
     :first-of-type{
-        z-index: 9999;
+        z-index: 999;
     }
     ${({flex})=>
        flex&&css`
