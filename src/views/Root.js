@@ -8,6 +8,8 @@ import Twitters from './Twitters';
 import DetailsPage from './DetailsPage';
 import {routers} from '../router/index';
 import store from '../store/index';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
 const Root = () => {
   return ( 
@@ -22,6 +24,8 @@ const Root = () => {
             <Route path={routers.article} component={DetailsPage}/>
             <Route exact path={routers.twitters} component={Twitters}/>
             <Route path={routers.twitter} component={DetailsPage}/>
+            <Route path={routers.login} component={LoginPage}/>
+            <Route path={routers.register} component={RegisterPage}/>
           </Switch>        
         </MainTemplate>
       </Router>

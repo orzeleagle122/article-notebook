@@ -6,5 +6,6 @@ export const routers={
     article: "/articles/:id",
     twitter: "/twitters/:id",
     note: "/notes/:id",
-    login: "/login"
+    login: "/login",
+    register: "/register"
 }
