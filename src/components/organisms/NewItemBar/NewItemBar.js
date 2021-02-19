@@ -7,6 +7,7 @@ import Input from '../../atoms/Input/Input';
 import withContext from '../../../hoc/withContext';
 import {connect} from 'react-redux';
 import {addItem as addItemAction} from '../../../actions';
+import { Formik, Form, ErrorMessage } from 'formik';
 
 
 const StyledWrapper = styled.div`
@@ -36,15 +37,93 @@ const StyledInput=styled(Input)`
   margin-top:30px;
 `;
 
+const StyledForm=styled(Form)`
+  display:flex;
+  flex-direction:column;
+`;
 
-const NewItemBar = ({ pageContext,isVisible,addItem }) => (
+const StyledErrorMessage=styled(ErrorMessage)`
+  color: red;
+  font-weight:700;
+  margin-left: 25px;
+  font-size:12px;
+`;
+
+
+const NewItemBar = ({ pageContext,isVisible,addItem,handleClose }) => (
   <StyledWrapper activecolor={pageContext} isVisible={isVisible}>
     <Heading big>Create new {pageContext}</Heading>
-    <StyledInput placeholder="title"/>
-    <StyledInput placeholder={pageContext==='twitters'?'Accont Name eg. orzeleagle122':'title'} />
-    {pageContext==='articles' && <StyledInput placeholder="link" />}
-    <StyledTextArea as="textarea" placeholder="title" />
-    <Button activecolor={pageContext} onClick={()=>addItem(pageContext,{title:'tytul'})}>Add Note</Button>
+    <Formik 
+      initialValues={{title:'',content:'',articleUrl:'',twitterName:'',created:''}}
+      onSubmit={(values, { setSubmitting })=>{
+        addItem(pageContext,values);
+        handleClose();
+        values.articleUrl='';
+        values.title='';
+        values.twitterName='';
+        values.content='';
+      }}
+      // validate={values => {
+      //   const errors = {};
+      //   if (!values.title) {
+      //     errors.title = 'Required';
+      //   } 
+      //   if (!values.twitterName) {
+      //     errors.twitterName = 'Required';
+      //   } 
+      //   if (!values.articleUrl) {
+      //     errors.articleUrl = 'Required';
+      //   } 
+      //   if (!values.content) {
+      //     errors.content = 'Required';
+      //   }
+      //   return errors;
+      // }}
+      >
+        {({values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting})=>(
+          <StyledForm>
+            <StyledInput 
+              type="text" 
+              name="title" 
+              placeholder="title"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.title}/> 
+              <StyledErrorMessage name="title" component="div" />           
+            {pageContext==='twitters' && <StyledInput 
+                                            placeholder="twitter name eg. orzeleagle" 
+                                            type="text" 
+                                            name="twitterName" 
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.twitterName}/>}
+            {pageContext==='twitters' && <StyledErrorMessage name="twitterName" component="div" />}
+            {pageContext==='articles' && <StyledInput 
+                                            placeholder="link" 
+                                            type="text" 
+                                            name="articleUrl"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.articleUrl}/>}
+            {pageContext==='articles' && <StyledErrorMessage name="articleUrl" component="div" />}
+            <StyledTextArea 
+              name="content" 
+              as="textarea"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.content} />
+            <StyledErrorMessage name="content" component="div" />
+            <Button activecolor={pageContext} type="submit">Add Note</Button>
+          </StyledForm>
+        )}
+
+      </Formik>
   </StyledWrapper>
 );
 

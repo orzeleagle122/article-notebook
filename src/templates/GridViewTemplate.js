@@ -80,7 +80,7 @@ const GridViewTemplate = ({children, pageContext}) => {
                     </StyledGrid>
                     <StyledButtonIcon icon={plusicon} pageContext={pageContext} onClick={handleNewItemBarToogle} isVisible={itemBar}/>        
                 </StyledWrapper>
-                <NewItemBar isVisible={itemBar}/>
+                <NewItemBar handleClose={handleNewItemBarToogle} isVisible={itemBar}/>
             </UserPageTemplate>
         </>
      );

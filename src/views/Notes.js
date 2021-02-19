@@ -20,7 +20,7 @@ const mapStateToProps=({notes})=>({notes});
 Notes.propTypes={
     notes: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             // cardType: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             content: PropTypes.string.isRequired,
