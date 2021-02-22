@@ -9,7 +9,8 @@ import Input from '../components/atoms/Input/Input';
 import { Link } from 'react-router-dom';
 import AuthTemplate from '../templates/AuthTemplate';
 import {connect} from 'react-redux';
-import {authenticate} from '../actions'
+import {authenticate} from '../actions';
+import {Redirect} from 'react-router-dom';
 
 
 const StyledForm = styled(Form)`
@@ -34,7 +35,7 @@ const StyledLink = styled(Link)`
   margin: 20px 0 50px;
 `;
 
-const LoginPage = ({authenticate}) => (
+const LoginPage = ({authenticate,userID}) => (
   <AuthTemplate>
     <Formik
       initialValues={{ username: '', password: '' }}
@@ -42,39 +43,50 @@ const LoginPage = ({authenticate}) => (
         authenticate(username,password);
       }}
     >
-      {({ handleChange, handleBlur, values }) => (
-        <>
-          <Heading>Sign in</Heading>
-          <StyledForm>
-            <StyledInput
-              type="text"
-              name="username"
-              placeholder="Login"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.title}
-            />
-            <StyledInput
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.title}
-            />
-            <Button activecolor="notes" type="submit">
-              sign in
-            </Button>
-          </StyledForm>
-          <StyledLink to={routers.register}>I want my account!</StyledLink>
-        </>
-      )}
+      {({ handleChange, handleBlur, values }) => {
+        if(userID){
+          return <Redirect to={routers.home} />
+        }      
+        return (
+          <>
+            <Heading>{userID}</Heading>
+            <Heading>Sign in</Heading>
+            <StyledForm>
+              <StyledInput
+                type="text"
+                name="username"
+                placeholder="Login"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <StyledInput
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <Button activecolor="notes" type="submit">
+                sign in
+              </Button>
+            </StyledForm>
+            <StyledLink to={routers.register}>I want my account!</StyledLink>
+          </>
+      )}}
     </Formik>
   </AuthTemplate>
 );
+
+const mapStateToProps=({userID=null})=>{
+  return ({
+    userID
+  })
+}
 
 const mapDispatchToProps=dispatch=>({
     authenticate:(username,password)=>dispatch(authenticate(username,password))
 })
 
-export default connect(null,mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps,mapDispatchToProps)(LoginPage);
