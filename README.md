@@ -1,7 +1,7 @@
 # Article-notebook
 
 ## Features<br/>
-stroybook<br/>
+storybook<br/>
 style component<br/>
 system atoms, molecules and organisms<br/>
 higher order componet<br/>
