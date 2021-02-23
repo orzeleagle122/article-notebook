@@ -1,5 +1,14 @@
 # Article-notebook
 
+## Features
+stroybook
+style component
+system atoms, molecules and organisms
+higher order componet
+class component and hook function component
+redux 
+axios 
+
 required
 `npm install --dev @storybook/addon-knobs`
 
